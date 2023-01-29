@@ -1,22 +1,26 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 // Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 
 // [3 7 22 2 78] -> 76
-double [] array () {
+double[] array()
+{
     int size = 0;
     Console.WriteLine("введите размер вашего массива: ");
     int.TryParse(Console.ReadLine(), out size);
-    double [] result = new double [size];
+    double[] result = new double[size];
     return result;
 }
 
-double [] arrayFilling(double[] array) {
+double[] arrayFilling(double[] array)
+{
     Random rnd = new Random();
     int count = 0;
     Console.Write("[ ");
-    while(count < array.Length){
-        array[count] = rnd.Next(100, 1000);
+    while (count < array.Length)
+    {
+        array[count] = rnd.NextDouble() * rnd.Next(-10000, 10000);
+        array[count] = Math.Round(array[count], 2);
         Console.Write(array[count] + " ");
         count++;
     }
@@ -24,23 +28,26 @@ double [] arrayFilling(double[] array) {
     return array;
 }
 
-double difference (double[] array) {
+double difference(double[] array)
+{
     double minNumber = array[0];
     double maxNumber = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if(minNumber > array[i]) {
+        if (minNumber > array[i])
+        {
             minNumber = array[i];
         }
-        if(maxNumber < array[i]) {
+        if (maxNumber < array[i])
+        {
             maxNumber = array[i];
         }
     }
 
-    return maxNumber - minNumber;
+    return Math.Round(maxNumber - minNumber, 2);
 }
 
-double [] myArray = array();
+double[] myArray = array();
 myArray = arrayFilling(myArray);
 double myDifference = difference(myArray);
 Console.WriteLine($"\nРазница: {myDifference}");
